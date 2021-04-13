@@ -23,6 +23,7 @@ export default {
     getData({commit}) {
       axios(url)
           .then(res => {
+              console.log(res.data);
               commit('setData', res.data);
           })
           .catch(err => {

@@ -2,7 +2,7 @@
     <form @submit="onSubmit">
         <div class="input-group mb-3">
             <input v-model="form.title" type="text" class="form-control" placeholder="Enter text" aria-label="Enter text" required>
-            <button class="btn btn-primary" type="submit">Find</button>
+            <button class="btn btn-primary" type="submit" :disabled="!data">Find</button>
         </div>
     </form>
 </template>
@@ -16,6 +16,11 @@
                     title: ''
                 }
             }
+        },
+        computed: {
+          data() {
+              return this.$store.getters.data;
+          }
         },
         watch: {
             'form.title'() {

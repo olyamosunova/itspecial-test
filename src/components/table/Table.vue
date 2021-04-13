@@ -21,11 +21,12 @@
                 </thead>
                 <tbody>
                 <tr
-                        v-for="item in data.slice(perPage * (currentPage - 1), perPage * currentPage)"
+                        v-for="(item, idx) in data.slice(perPage * (currentPage - 1), perPage * currentPage)"
                         :key="item.id + item.firstName"
                         @click="onClickChooseUser(item.id)"
                 >
-                    <td>{{item.firstName}}</td>
+                    <td>{{idx + 1}}</td>
+                    <td :aria-label="perPage * (currentPage - 1) + ',' + perPage * currentPage">{{item.firstName}}</td>
                     <td>{{item.lastName}}</td>
                     <td>{{item.adress.city}}, {{item.adress.streetAddress}}, {{item.adress.zip}}, {{item.adress.state}}</td>
                     <td>{{item.email}}</td>
@@ -53,6 +54,11 @@
         data() {
             return {
                 fields: [
+                    {
+                        key: 'idx',
+                        label: 'idx',
+                        sortable: true
+                    },
                     {
                         key: 'firstName',
                         label: 'First Name',
@@ -133,6 +139,14 @@
 
                   case 'next':
                       this.$store.dispatch('changeCurrentPage', this.currentPage + 1);
+                      break;
+
+                  case 'first':
+                      this.$store.dispatch('changeCurrentPage', 1);
+                      break;
+
+                  case 'last':
+                      this.$store.dispatch('changeCurrentPage', Math.trunc(this.pagesCount));
                       break;
 
                   default:
