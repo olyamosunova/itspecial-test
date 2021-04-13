@@ -1,6 +1,8 @@
 <template>
-    <div class="loader text-center">
-        <b-spinner variant="primary" label="Text Centered"></b-spinner>
+    <div class="loader d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
     </div>
 </template>
 
@@ -13,10 +15,6 @@
 <style scoped>
     .loader {
         flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         padding: 15px;
     }
 </style>

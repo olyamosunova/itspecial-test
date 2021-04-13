@@ -1,37 +1,50 @@
 <template>
-    <b-pagination
-            class="justify-content-sm-end"
-            v-model="currentPage"
-            :total-rows="rows"
-            :per-page="perPage"
-            aria-controls="my-table"
-    ></b-pagination>
+    <nav class="d-flex justify-content-end">
+        <ul class="pagination">
+            <li class="page-item">
+                <button class="page-link" type="button" aria-label="Previous" @click="handlerClickChangePage('prev')" :disabled="currentPage === 1">
+                    <span aria-hidden="true">&laquo;</span>
+                </button>
+            </li>
+            <li class="page-item" v-bind:class="{'active': currentPage === page}" v-for="page in pages" :key="page">
+                <button class="page-link" type="button" @click="handlerClickChangePage('', page)">{{page}}</button>
+            </li>
+            <li class="page-item">
+                <button class="page-link" type="button" aria-label="Next" @click="handlerClickChangePage('next')" :disabled="currentPage === pages.length">
+                    <span aria-hidden="true">&raquo;</span>
+                </button>
+            </li>
+        </ul>
+    </nav>
 </template>
 
 <script>
     export default {
         name: "Pagination",
+        props: {
+            pages: Array
+        },
         data() {
-            return {
-                perPage: 3,
-                currentPage: 1,
-                items: [
-                    { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-                    { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-                    { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-                    { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-                    { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-                    { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-                    { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-                    { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-                    { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' }
-                ]
-            }
+            return {}
         },
         computed: {
-            rows() {
-                return this.items.length
+            currentPage() {
+                return this.$store.getters.currentPage;
+            }
+        },
+        methods: {
+            handlerClickChangePage(type, page) {
+                this.$emit('onClickChangePage', {type, page})
             }
         }
     }
 </script>
+
+<style lang="scss">
+    .page-item {
+        button:disabled:hover {
+            background-color: inherit;
+            border: 1px solid #dee2e6;
+        }
+    }
+</style>

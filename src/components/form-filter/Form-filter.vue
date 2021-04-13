@@ -1,18 +1,10 @@
 <template>
-    <b-form @submit="onSubmit">
-        <b-input-group prepend="Text" class="mt-3">
-            <b-form-input
-                    id="text"
-                    v-model="form.title"
-                    type="text"
-                    placeholder="Enter text"
-                    required
-            />
-            <b-input-group-append>
-                <b-button type="submit" variant="primary">Find</b-button>
-            </b-input-group-append>
-        </b-input-group>
-    </b-form>
+    <form @submit="onSubmit">
+        <div class="input-group mb-3">
+            <input v-model="form.title" type="text" class="form-control" placeholder="Enter text" aria-label="Enter text" required>
+            <button class="btn btn-primary" type="submit">Find</button>
+        </div>
+    </form>
 </template>
 
 <script>
@@ -36,6 +28,7 @@
             onSubmit(evt) {
                 evt.preventDefault();
 
+                this.$store.dispatch('changeCurrentPage', 1);
                 this.$store.dispatch('filterData', this.form.title);
             }
         }
