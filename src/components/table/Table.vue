@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="overflow-auto mt-5 mb-5">
-            <table class="table">
+            <table class="table table-hover">
                 <thead class="thead-light">
                 <tr>
                     <th
@@ -21,12 +21,12 @@
                 </thead>
                 <tbody>
                 <tr
-                        v-for="(item, idx) in data.slice(perPage * (currentPage - 1), perPage * currentPage)"
+                        v-for="item in data.slice(perPage * (currentPage - 1), perPage * currentPage)"
                         :key="item.id + item.firstName"
                         @click="onClickChooseUser(item.id)"
                 >
-                    <td>{{idx + 1}}</td>
-                    <td :aria-label="perPage * (currentPage - 1) + ',' + perPage * currentPage">{{item.firstName}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.firstName}}</td>
                     <td>{{item.lastName}}</td>
                     <td>{{item.adress.city}}, {{item.adress.streetAddress}}, {{item.adress.zip}}, {{item.adress.state}}</td>
                     <td>{{item.email}}</td>
@@ -55,8 +55,8 @@
             return {
                 fields: [
                     {
-                        key: 'idx',
-                        label: 'idx',
+                        key: 'id',
+                        label: 'ID',
                         sortable: true
                     },
                     {
@@ -121,14 +121,6 @@
 
                 return pages;
             }
-        },
-        mounted() {
-            const isMobile = window.innerWidth < 768;
-
-            if (isMobile) {
-                this.perPage = 5;
-            }
-
         },
         methods: {
           onClickChangePage({type, page}) {
@@ -212,6 +204,10 @@
     }
 
     th.sort {
+        cursor: pointer;
+    }
+
+    tbody tr {
         cursor: pointer;
     }
 </style>
