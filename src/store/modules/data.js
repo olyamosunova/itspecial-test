@@ -73,35 +73,31 @@ export default {
         }
       },
       sortingData({state, commit}, {sortBy, sortType}) {
-          let sortedData = [];
           commit('setActiveSortBy', sortBy);
 
-          switch (sortType) {
-              case SORT_TYPE.INC:
-                  sortedData = state.data.slice().sort((a, b) => {
-                      if (a[sortBy] > b[sortBy]) {
+          const sortedData = state.data.slice().sort((a, b) => {
+              let itemA = typeof a === 'string' ? a.toLowerCase() : a;
+              let itemB = typeof a === 'string' ? b.toLowerCase() : b;
+
+              switch (sortType) {
+                  case SORT_TYPE.INC:
+                      if (itemA[sortBy] > itemB[sortBy]) {
                           return  1;
                       } else {
                           return -1;
                       }
-                  });
-                  break;
 
-              case SORT_TYPE.DEC:
-                  sortedData = state.data.slice().sort((a, b) => {
-                      if (a[sortBy] > b[sortBy]) {
+                  case SORT_TYPE.DEC:
+                      if (itemA[sortBy] > itemB[sortBy]) {
                           return  -1;
                       } else {
                           return 1;
                       }
-                  });
-                  break;
 
-              default:
-                  sortedData = state.data.slice();
-                  break;
-
-          }
+                  default:
+                      return 0;
+              }
+          });
 
           commit('setSortedData', sortedData);
       }
