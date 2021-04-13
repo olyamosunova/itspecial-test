@@ -18,7 +18,7 @@
                     <td>{{item.lastName}}</td>
                     <td>{{item.phone}}</td>
                     <td>{{item.email}}</td>
-                    <td>{{item.adress.city}}, {{item.adress.streetAddress}}, {{item.adress.zip}}, {{item.adress.state}}</td>
+<!--                    <td>{{item.adress.city}}, {{item.adress.streetAddress}}, {{item.adress.zip}}, {{item.adress.state}}</td>-->
 <!--                    <td>{{item.description}}</td>-->
                 </tr>
                 <tr>
@@ -68,11 +68,11 @@
                         label: 'Email',
                         sortable: false
                     },
-                    {
-                        key: 'adress',
-                        label: 'Address',
-                        sortable: false
-                    },
+                    // {
+                    //     key: 'adress',
+                    //     label: 'Address',
+                    //     sortable: false
+                    // },
                     // {
                     //     key: 'description',
                     //     label: 'Description',

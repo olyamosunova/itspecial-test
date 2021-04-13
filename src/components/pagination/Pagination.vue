@@ -82,7 +82,7 @@
                 return this.currentPage + 1;
             },
             showLeftEllipsis() {
-                return this.currentPage >= this.maxPaginationItems;
+                return this.currentPage > this.maxPaginationItems;
             },
             showRightEllipsis() {
                 return this.pages.length > this.maxPaginationItems && this.currentPage < this.pages.length - 2;
