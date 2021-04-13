@@ -1,12 +1,14 @@
 <template>
     <div class="card mt-5">
         <div class="card-body">
-            <p class="card-text">Выбран пользователь: <b>{{user.firstName}} {{user.lastName}}</b></p>
-            <p class="card-text">Описание: {{user.description}}</p>
-            <p class="card-text">Адрес проживания: <b>{{user.adress.streetAddress}}</b></p>
-            <p class="card-text">Город: <b>{{user.adress.city}}</b></p>
-            <p class="card-text">Провинция/штат: <b>{{user.adress.state}}</b></p>
-            <p class="card-text">Индекс: <b>{{user.adress.zip}}</b></p>
+            <p class="card-text">Selected user: <b>{{user.firstName}} {{user.lastName}}</b></p>
+            <p class="card-text">Description:
+                <textarea class="form-control" v-model="user.description" disabled></textarea>
+            </p>
+            <p class="card-text">Residence address: <b>{{user.adress.streetAddress}}</b></p>
+            <p class="card-text">City: <b>{{user.adress.city}}</b></p>
+            <p class="card-text">Province / State: <b>{{user.adress.state}}</b></p>
+            <p class="card-text">Zip: <b>{{user.adress.zip}}</b></p>
         </div>
     </div>
 </template>

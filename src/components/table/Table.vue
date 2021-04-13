@@ -4,19 +4,7 @@
             <table class="table table-hover">
                 <thead class="thead-light">
                 <tr>
-                    <th
-                        :class="{sort: field.sortable}"
-                        scope="col" v-for="field in fields"
-                        :key="field.key">
-                        {{ field.label }}
-                        <span
-                            v-if="field.sortable"
-                            :class="{
-                                'sort-icon': true,
-                                'sort-icon--up': false,
-                                'sort-icon--down': false
-                                }"></span>
-                    </th>
+                    <FieldTitle v-for="field in fields" :key="field.key" :field="field" />
                 </tr>
                 </thead>
                 <tbody>
@@ -28,10 +16,10 @@
                     <td>{{item.id}}</td>
                     <td>{{item.firstName}}</td>
                     <td>{{item.lastName}}</td>
-                    <td>{{item.adress.city}}, {{item.adress.streetAddress}}, {{item.adress.zip}}, {{item.adress.state}}</td>
-                    <td>{{item.email}}</td>
                     <td>{{item.phone}}</td>
-                    <td>{{item.description}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.adress.city}}, {{item.adress.streetAddress}}, {{item.adress.zip}}, {{item.adress.state}}</td>
+<!--                    <td>{{item.description}}</td>-->
                 </tr>
                 <tr>
                     <td v-if="!data.length" colspan="6">No results were found for your search.</td>
@@ -47,6 +35,7 @@
 </template>
 
 <script>
+    import FieldTitle from "../field-title/Field-title";
     import Pagination from "../pagination/Pagination";
 
     export default {
@@ -70,9 +59,9 @@
                         sortable: true
                     },
                     {
-                        key: 'adress',
-                        label: 'Address',
-                        sortable: true
+                        key: 'phone',
+                        label: 'Phone',
+                        sortable: false
                     },
                     {
                         key: 'email',
@@ -80,15 +69,15 @@
                         sortable: false
                     },
                     {
-                        key: 'phone',
-                        label: 'Phone',
+                        key: 'adress',
+                        label: 'Address',
                         sortable: false
                     },
-                    {
-                        key: 'description',
-                        label: 'Description',
-                        sortable: false
-                    }
+                    // {
+                    //     key: 'description',
+                    //     label: 'Description',
+                    //     sortable: false
+                    // }
                 ]
             }
         },
@@ -120,7 +109,7 @@
                 }
 
                 return pages;
-            }
+            },
         },
         methods: {
           onClickChangePage({type, page}) {
@@ -155,52 +144,18 @@
                       behavior: 'smooth'
                   });
               }, 100);
-            }
+            },
         },
         components: {
+            FieldTitle,
             Pagination
         }
     }
 </script>
 
 <style lang="scss">
-    .sort-icon {
-        background: transparent;
-        display: inline-block;
-        width: 7px;
-        height: 28px;
-        position: relative;
-        color: #fff;
-
-        &::before {
-            content: '';
-            position: absolute; /* Абсолютное позиционирование */
-            left: 0;
-            top: -3px; /* Положение треугольника */
-            border: 7px solid transparent;
-            border-bottom: 7px solid grey;
-        }
-
-        &::after {
-            content: '';
-            position: absolute; /* Абсолютное позиционирование */
-            left: 0;
-            bottom: -3px; /* Положение треугольника */
-            border: 7px solid transparent; /* Прозрачные границы */
-            border-top: 7px solid grey; /* Добавляем треугольник */
-        }
-
-        &--up {
-            &::before {
-                border-bottom-color: #007bff;
-            }
-        }
-
-        &--down {
-            &::after {
-                border-top-color: #007bff;
-            }
-        }
+    .table thead th {
+        vertical-align: middle;
     }
 
     th.sort {
