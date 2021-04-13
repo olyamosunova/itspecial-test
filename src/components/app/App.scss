@@ -1,11 +1,28 @@
 body {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   margin: 0;
-  padding: 0;
+  padding: 50px 0;
+
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 
   button,
   input,
   textarea {
     font-family: inherit;
+  }
+}
+
+#app {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  & > section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
   }
 }
