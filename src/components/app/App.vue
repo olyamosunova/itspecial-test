@@ -5,9 +5,9 @@
 </template>
 
 <script>
-  import "./App.scss";
+  import './App.scss';
   import 'bootstrap/dist/css/bootstrap.css';
-  import Main from "../main/Main";
+  import Main from '../main/Main';
 
 export default {
   name: 'App',
