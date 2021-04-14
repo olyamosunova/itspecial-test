@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`unit tests for Pagination component should match the snapshot 1`] = `
+<nav class="d-flex justify-content-end">
+  <ul class="pagination">
+    <li class="page-item"><button type="button" aria-label="First" disabled="disabled" class="page-link"><span aria-hidden="true">«</span></button></li>
+    <li class="page-item"><button type="button" aria-label="Previous" disabled="disabled" class="page-link"><span aria-hidden="true">‹</span></button></li>
+    <!---->
+    <li class="page-item active"><button type="button" class="page-link">
+        1</button></li>
+    <li class="page-item"><button type="button" class="page-link">
+        2</button></li>
+    <li class="page-item"><button type="button" class="page-link">
+        3</button></li>
+    <!---->
+    <li class="page-item"><button type="button" aria-label="Next" class="page-link"><span aria-hidden="true">›</span></button></li>
+    <li class="page-item"><button type="button" aria-label="Last" class="page-link"><span aria-hidden="true">»</span></button></li>
+  </ul>
+</nav>
+`;

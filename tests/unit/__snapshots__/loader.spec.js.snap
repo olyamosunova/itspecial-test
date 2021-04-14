@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`unit tests for Loader component should match the snapshot 1`] = `
+<div class="loader d-flex justify-content-center">
+  <div role="status" class="spinner-border"><span class="visually-hidden">Loading...</span></div>
+</div>
+`;

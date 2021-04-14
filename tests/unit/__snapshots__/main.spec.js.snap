@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`unit tests for Main component should match the snapshot 1`] = `
+<section class="container">
+  <form>
+    <div class="input-group mb-3"><input type="text" placeholder="Enter text" aria-label="Enter text" required="required" class="form-control"> <button type="submit" class="btn btn-primary">Find</button></div>
+  </form>
+  <div>
+    <div class="overflow-auto mt-5 mb-5">
+      <table class="table table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col" class="sort">
+              ID
+              <span class="sort-icon"></span>
+            </th>
+            <th scope="col" class="sort">
+              First Name
+              <span class="sort-icon"></span>
+            </th>
+            <th scope="col" class="sort">
+              Last Name
+              <span class="sort-icon"></span>
+            </th>
+            <th scope="col" class="">
+              Phone
+              <!---->
+            </th>
+            <th scope="col" class="">
+              Email
+              <!---->
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <!---->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!---->
+  </div>
+  <div class="card mt-5">
+    <div class="card-body">
+      <p class="card-text">Selected user: <b>Meribeth Haglund</b></p>
+      <p class="card-text">Description:
+        <textarea disabled="disabled" class="form-control"></textarea>
+      </p>
+      <p class="card-text">Residence address: <b>9749 Ante Ct</b></p>
+      <p class="card-text">City: <b>El Dorado Hills</b></p>
+      <p class="card-text">Province / State: <b>NV</b></p>
+      <p class="card-text">Zip: <b>71328</b></p>
+    </div>
+  </div>
+</section>
+`;

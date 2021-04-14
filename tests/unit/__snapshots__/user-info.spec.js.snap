@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`unit tests for UserInfo component should match the snapshot 1`] = `
+<div class="card mt-5">
+  <div class="card-body">
+    <p class="card-text">Selected user: <b>Meribeth Haglund</b></p>
+    <p class="card-text">Description:
+      <textarea disabled="disabled" class="form-control"></textarea>
+    </p>
+    <p class="card-text">Residence address: <b>9749 Ante Ct</b></p>
+    <p class="card-text">City: <b>El Dorado Hills</b></p>
+    <p class="card-text">Province / State: <b>NV</b></p>
+    <p class="card-text">Zip: <b>71328</b></p>
+  </div>
+</div>
+`;

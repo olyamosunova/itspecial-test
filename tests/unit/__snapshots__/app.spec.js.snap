@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`unit tests for App component should match the snapshot 1`] = `
+<div id="app">
+  <section class="container">
+    <form>
+      <div class="input-group mb-3"><input type="text" placeholder="Enter text" aria-label="Enter text" required="required" class="form-control"> <button type="submit" disabled="disabled" class="btn btn-primary">Find</button></div>
+    </form>
+    <div class="loader d-flex justify-content-center">
+      <div role="status" class="spinner-border"><span class="visually-hidden">Loading...</span></div>
+    </div>
+    <!---->
+  </section>
+</div>
+`;
