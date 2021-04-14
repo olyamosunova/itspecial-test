@@ -1,6 +1,6 @@
 import { mount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
-import Pagination from "@/components/pagination/Pagination";
+import Pagination from "@/components/pagination/Pagination.vue";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -8,7 +8,7 @@ localVue.use(Vuex);
 const pages = [1, 2, 3];
 
 describe('unit tests for Pagination component', () => {
-    let store;
+    let store: any;
     let getters;
 
     beforeEach(() => {

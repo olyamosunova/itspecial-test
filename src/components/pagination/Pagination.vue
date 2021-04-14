@@ -3,14 +3,14 @@
         <ul class="pagination">
             <li class="page-item">
                 <button class="page-link" type="button" aria-label="First"
-                        @click="handlerClickChangePage('first')"
+                        @click="handlerClickChangePage('first', null)"
                         :disabled="currentPage === 1">
                     <span aria-hidden="true">&laquo;</span>
                 </button>
             </li>
             <li class="page-item">
                 <button class="page-link" type="button" aria-label="Previous"
-                        @click="handlerClickChangePage('prev')"
+                        @click="handlerClickChangePage('prev', null)"
                         :disabled="currentPage === 1">
                     <span aria-hidden="true">&lsaquo;</span>
                 </button>
@@ -32,14 +32,14 @@
             </li>
             <li class="page-item">
                 <button class="page-link" type="button" aria-label="Next"
-                        @click="handlerClickChangePage('next')"
+                        @click="handlerClickChangePage('next', null)"
                         :disabled="currentPage === pages.length">
                     <span aria-hidden="true">&rsaquo;</span>
                 </button>
             </li>
             <li class="page-item">
                 <button class="page-link" type="button" aria-label="Last"
-                        @click="handlerClickChangePage('last')"
+                        @click="handlerClickChangePage('last', null)"
                         :disabled="currentPage === pages.length">
                     <span aria-hidden="true">&raquo;</span>
                 </button>
@@ -48,22 +48,24 @@
     </nav>
 </template>
 
-<script>
-    export default {
+<script lang="ts">
+    import Vue, { PropType } from 'vue';
+
+    export default Vue.extend({
         name: "Pagination",
         props: {
-            pages: Array
+            pages: Array as PropType<number[]>
         },
         data() {
             return {
-                maxPaginationItems: 4
+                maxPaginationItems: 4 as number
             }
         },
         computed: {
-            currentPage() {
+            currentPage(): number {
                 return this.$store.getters.currentPage;
             },
-            pageCountStart() {
+            pageCountStart(): number {
                 if (this.currentPage < this.maxPaginationItems) {
                     return 0;
                 } else if (this.currentPage >= this.pages.length - 2) {
@@ -72,7 +74,7 @@
 
                 return this.currentPage - 2;
             },
-            pageCountEnd() {
+            pageCountEnd(): number {
                 if (this.currentPage < this.maxPaginationItems) {
                     return 4;
                 } else if (this.currentPage >= this.pages.length - 2) {
@@ -81,19 +83,19 @@
 
                 return this.currentPage + 1;
             },
-            showLeftEllipsis() {
+            showLeftEllipsis(): boolean {
                 return this.currentPage > this.maxPaginationItems;
             },
-            showRightEllipsis() {
+            showRightEllipsis(): boolean {
                 return this.pages.length > this.maxPaginationItems && this.currentPage < this.pages.length - 2;
             }
         },
         methods: {
-            handlerClickChangePage(type, page) {
+            handlerClickChangePage(type: string, page: number | null): void {
                 this.$emit('onClickChangePage', {type, page})
             }
         }
-    }
+    })
 </script>
 
 <style lang="scss">

@@ -9,22 +9,23 @@
     </section>
 </template>
 
-<script>
-    import FormFilter from "../form-filter/Form-filter";
-    import Table from "../table/Table";
-    import Loader from "../loader/Loader";
-    import UserInfo from "../user-info/User-info";
+<script lang="ts">
+    import Vue from 'vue';
+    import FormFilter from '@/components/form-filter/Form-filter.vue';
+    import Table from '@/components/table/Table.vue';
+    import Loader from '@/components/loader/Loader.vue';
+    import UserInfo from '@/components/user-info/User-info.vue';
 
-    export default {
+    export default Vue.extend({
         name: "Main",
         mounted() {
             this.$store.dispatch('getData');
         },
         computed: {
-            data() {
+            data(): Array<object> {
                 return this.$store.getters.data;
             },
-            chosenUser() {
+            chosenUser(): object {
                 return this.$store.getters.chosenUser;
             }
         },
@@ -34,7 +35,7 @@
             Table,
             UserInfo
         },
-    }
+    })
 </script>
 
 <style scoped>

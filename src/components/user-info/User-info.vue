@@ -13,17 +13,15 @@
     </div>
 </template>
 
-<script>
-    export default {
+<script lang="ts">
+    import Vue from 'vue';
+
+    export default Vue.extend({
         name: "User-info",
         computed: {
-            user() {
+            user(): object {
                 return this.$store.getters.chosenUser;
             }
         }
-    }
+    })
 </script>
-
-<style scoped>
-
-</style>

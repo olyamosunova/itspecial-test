@@ -1,6 +1,6 @@
 import { mount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
-import FieldTitle from "@/components/field-title/Field-title";
+import FieldTitle from "@/components/field-title/Field-title.vue";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -14,7 +14,7 @@ const field = {
 describe('unit tests for FieldTitle component', () => {
     let actions;
     let getters;
-    let store;
+    let store: any;
 
     beforeEach(() => {
         actions = {

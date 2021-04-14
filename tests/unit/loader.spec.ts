@@ -1,5 +1,5 @@
 import { mount, createLocalVue } from "@vue/test-utils";
-import Loader from "@/components/loader/Loader";
+import Loader from "@/components/loader/Loader.vue";
 
 const localVue = createLocalVue();
 

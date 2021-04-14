@@ -7,18 +7,20 @@
     </form>
 </template>
 
-<script>
-    export default {
+<script lang="ts">
+    import Vue from 'vue';
+
+    export default Vue.extend({
         name: "Form-filter",
         data() {
             return {
                 form: {
-                    title: ''
+                    title: '' as string
                 }
             }
         },
         computed: {
-          data() {
+          data(): Array<object> {
               return this.$store.getters.data;
           }
         },
@@ -30,12 +32,12 @@
             }
         },
         methods: {
-            onSubmit(evt) {
+            onSubmit(evt: any): void {
                 evt.preventDefault();
 
                 this.$store.dispatch('changeCurrentPage', 1);
                 this.$store.dispatch('filterData', this.form.title);
             }
         }
-    }
+    })
 </script>

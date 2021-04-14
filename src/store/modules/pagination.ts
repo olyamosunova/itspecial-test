@@ -4,20 +4,20 @@ export default {
         currentPage: 1
     },
     mutations: {
-        setCurrentPage(state, page) {
+        setCurrentPage(state: any, page: number) {
             state.currentPage = page;
         }
     },
     actions: {
-        changeCurrentPage({commit}, page) {
+        changeCurrentPage({commit}: any, page: number) {
             commit('setCurrentPage', page);
         }
     },
     getters: {
-        perPage(state) {
+        perPage(state: any) {
             return state.perPage;
         },
-        currentPage(state) {
+        currentPage(state: any) {
             return state.currentPage;
         }
     }

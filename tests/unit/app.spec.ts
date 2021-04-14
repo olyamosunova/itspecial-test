@@ -1,12 +1,12 @@
 import { mount, createLocalVue } from "@vue/test-utils";
-import App from "@/components/app/App";
+import App from "@/components/app/App.vue";
 import Vuex from "vuex";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe('unit tests for App component', () => {
-    let store;
+    let store: any;
     let actions;
 
     beforeEach(() => {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {SORT_TYPE} from "../../const";
+import { SORT_TYPE } from "@/const";
 
 const url = `http://www.filltext.com/?rows=100&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&adress={addressObject}&description={lorem|32}`;
 
@@ -12,24 +12,24 @@ export default {
       activeSortBy: null
   },
   mutations: {
-      setData(state, data) {
+      setData(state: any, data: Array<object>) {
           state.data = data;
       },
-      setFilteredData(state, data) {
+      setFilteredData(state: any, data: Array<object>) {
           state.filteredData = data;
       },
-      setChosenUser(state, user) {
+      setChosenUser(state: any, user: object) {
           state.chosenUser = user;
       },
-      setSortedData(state, data) {
+      setSortedData(state: any, data: Array<object>) {
           state.sortedData = data;
       },
-      setActiveSortBy(state, value) {
+      setActiveSortBy(state: any, value: string) {
           state.activeSortBy = value;
       },
   },
   actions: {
-    getData({commit}) {
+    getData({commit}: any) {
       axios(url)
           .then(res => {
               console.log(res.data);
@@ -40,44 +40,41 @@ export default {
               console.error(err)
           });
     },
-      filterData({state, commit}, value) {
-        const newData = state.data.filter(item => {
-            const firstName = item.firstName.toLowerCase();
-            const lastName = item.lastName.toLowerCase();
-            const email = item.email.toLowerCase();
-            const phone = item.phone.toLowerCase();
-            // const description = item.description.toLowerCase();
-            const adress = `${item.adress.city}, ${item.adress.streetAddress},
-                            ${item.adress.zip}, ${item.adress.state}`.toLowerCase();
+      filterData({state, commit}: any, value: string) {
+        const newData = state.data.filter((item: object) => {
+            let { firstName, lastName, email, phone }: any = item;
+
+            firstName = firstName.toLowerCase();
+            lastName = lastName.toLowerCase();
+            email = email.toLowerCase();
+            phone = phone.toLowerCase();
 
             return firstName.includes(value.toLowerCase()) ||
                 lastName.includes(value.toLowerCase()) ||
                 email.includes(value.toLowerCase()) ||
-                phone.includes(value.toLowerCase()) ||
-                // description.includes(value.toLowerCase()) ||
-                adress.includes(value.toLowerCase());
+                phone.includes(value.toLowerCase());
         });
 
 
         commit('setFilteredData', newData);
       },
-      clearFilterInput({commit}) {
+      clearFilterInput({commit}: any) {
           commit('setFilteredData', null);
       },
-      getChosenUser({state, commit}, userId) {
-        const idx = state.data.findIndex(item => item.id === userId);
+      getChosenUser({state, commit}: any, userId: number) {
+        const idx = state.data.findIndex(({id}: any) => id === userId);
 
         if (idx >= 0) {
             const user = state.data[idx];
             commit('setChosenUser', user);
         }
       },
-      sortingData({state, commit}, {sortBy, sortType}) {
+      sortingData({state, commit}: any, {sortBy, sortType}: any) {
           commit('setActiveSortBy', sortBy);
 
-          const sortedData = state.data.slice().sort((a, b) => {
-              let itemA = typeof a === 'string' ? a.toLowerCase() : a;
-              let itemB = typeof a === 'string' ? b.toLowerCase() : b;
+          const sortedData = state.data.slice().sort((a: any, b: any) => {
+              const itemA = typeof a === 'string' ? a.toLowerCase() : a;
+              const itemB = typeof a === 'string' ? b.toLowerCase() : b;
 
               switch (sortType) {
                   case SORT_TYPE.INC:
@@ -103,13 +100,13 @@ export default {
       }
   },
   getters: {
-      data(state) {
+      data(state: any) {
           return state.filteredData ? state.filteredData : state.sortedData;
       },
-      chosenUser(state) {
+      chosenUser(state: any) {
           return state.chosenUser;
       },
-      activeSortBy(state) {
+      activeSortBy(state: any) {
          return state.activeSortBy;
       }
   }

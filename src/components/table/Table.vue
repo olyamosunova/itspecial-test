@@ -9,17 +9,15 @@
                 </thead>
                 <tbody>
                 <tr
-                        v-for="item in data.slice(perPage * (currentPage - 1), perPage * currentPage)"
-                        :key="item.id + item.firstName"
-                        @click="onClickChooseUser(item.id)"
+                    v-for="item in data.slice(perPage * (currentPage - 1), perPage * currentPage)"
+                    :key="item.id + item.firstName"
+                    @click="onClickChooseUser(item.id)"
                 >
                     <td>{{item.id}}</td>
                     <td>{{item.firstName}}</td>
                     <td>{{item.lastName}}</td>
                     <td>{{item.phone}}</td>
                     <td>{{item.email}}</td>
-<!--                    <td>{{item.adress.city}}, {{item.adress.streetAddress}}, {{item.adress.zip}}, {{item.adress.state}}</td>-->
-<!--                    <td>{{item.description}}</td>-->
                 </tr>
                 <tr>
                     <td v-if="!data.length" colspan="6">No results were found for your search.</td>
@@ -34,11 +32,12 @@
     </div>
 </template>
 
-<script>
-    import FieldTitle from "../field-title/Field-title";
-    import Pagination from "../pagination/Pagination";
+<script lang="ts">
+    import Vue from 'vue';
+    import FieldTitle from '@/components/field-title/Field-title.vue';
+    import Pagination from '@/components/pagination/Pagination.vue';
 
-    export default {
+    export default Vue.extend({
         name: "Table",
         data() {
             return {
@@ -67,31 +66,21 @@
                         key: 'email',
                         label: 'Email',
                         sortable: false
-                    },
-                    // {
-                    //     key: 'adress',
-                    //     label: 'Address',
-                    //     sortable: false
-                    // },
-                    // {
-                    //     key: 'description',
-                    //     label: 'Description',
-                    //     sortable: false
-                    // }
-                ]
+                    }
+                ] as Array<object>
             }
         },
         computed: {
-            data() {
+            data(): Array<object> {
                 return this.$store.getters.data;
             },
-            perPage() {
+            perPage(): number {
                 return this.$store.getters.perPage;
             },
-            currentPage() {
+            currentPage(): number {
                 return this.$store.getters.currentPage;
             },
-            pagesCount() {
+            pagesCount(): number {
                 const length = this.data.length;
 
                 let count = length / this.perPage;
@@ -102,8 +91,9 @@
 
                 return count;
             },
-            pages() {
+            pages(): Array<number> {
                 const pages = [];
+
                 for (let i = 1; i <= this.pagesCount; i++) {
                     pages.push(i);
                 }
@@ -112,7 +102,7 @@
             },
         },
         methods: {
-          onClickChangePage({type, page}) {
+          onClickChangePage({type, page}: any): void {
               switch (type) {
                   case `prev`:
                       this.$store.dispatch('changeCurrentPage', this.currentPage - 1);
@@ -135,7 +125,7 @@
                       break;
               }
           },
-            onClickChooseUser(userId) {
+            onClickChooseUser(userId: number) {
               this.$store.dispatch('getChosenUser', userId);
 
               setTimeout(() => {
@@ -150,7 +140,7 @@
             FieldTitle,
             Pagination
         }
-    }
+    })
 </script>
 
 <style lang="scss">

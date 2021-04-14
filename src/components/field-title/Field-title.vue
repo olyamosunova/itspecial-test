@@ -14,33 +14,43 @@
     </th>
 </template>
 
-<script>
-    import {SORT_TYPE} from "../../const";
+<script lang="ts">
+    import Vue, { PropType } from 'vue';
+    import { SORT_TYPE } from '@/const';
 
-    export default {
+    interface ComplexField {
+        key: string,
+        label: string,
+        sortable: boolean
+    }
+
+    export default Vue.extend({
         name: "Field-title",
         props: {
-            field: Object
+            field: {
+                type: Object as PropType<ComplexField>,
+                required: true
+            }
         },
         data() {
             return {
-                SORT_TYPE,
-                activeSortType: null
+                SORT_TYPE: SORT_TYPE as object,
+                activeSortType: '' as string
             }
         },
         created() {
-            const onClickField = (evt) => this.activeSortType = this.$el.contains(evt.target) ? this.activeSortType : null;
+            const onClickField = (evt: MouseEvent) => this.activeSortType = this.$el.contains(evt.target as HTMLElement) ? this.activeSortType : '';
 
             document.addEventListener('click', onClickField);
             this.$on('hook:beforeDestroy', () => document.removeEventListener('click', onClickField));
         },
         computed: {
-            activeSortBy() {
+            activeSortBy(): string {
                 return this.$store.getters.activeSortBy;
             },
         },
         methods: {
-            handlerClickSortData(sortBy) {
+            handlerClickSortData(sortBy: string): void {
                 if (this.field.sortable) {
                     this.activeSortType = this.activeSortType ? this.activeSortType === SORT_TYPE.INC ? SORT_TYPE.DEC : SORT_TYPE.INC : SORT_TYPE.INC;
 
@@ -48,7 +58,7 @@
                 }
             }
         }
-    }
+    })
 </script>
 
 <style lang="scss">
