@@ -1,5 +1,7 @@
 import { mount, createLocalVue } from "@vue/test-utils";
 import Main from "@/components/main/Main.vue";
+import Table from "@/components/table/Table.vue";
+import Loader from "@/components/loader/Loader.vue";
 import Vuex from "vuex";
 
 const localVue = createLocalVue();
@@ -51,8 +53,8 @@ const data = [
 ];
 
 describe('unit tests for Main component', () => {
-    let actions;
-    let getters;
+    let actions: any;
+    let getters: any;
     let store: any;
 
     beforeEach(() => {
@@ -72,7 +74,47 @@ describe('unit tests for Main component', () => {
     });
 
     it('should match the snapshot', () => {
+        actions = {
+            getData: jest.fn(),
+        };
+
+        getters = {
+            data: () => data,
+            chosenUser: () => data[0]
+        };
+
+        store = new Vuex.Store({
+            actions,
+            getters
+        });
+
         const wrapper = mount(Main, { store, localVue });
         expect(wrapper.html()).toMatchSnapshot();
+    });
+
+    it ('should be a Table when data is', () => {
+        const wrapper = mount(Main, { store, localVue });
+        const table = wrapper.findComponent(Table);
+        expect(table.is(Table)).toBe(true)
+    });
+
+    it ('should be a Loader when data is empty', () => {
+        actions = {
+            getData: jest.fn(),
+        };
+
+        getters = {
+            data: () => null,
+            chosenUser: () => null
+        };
+
+        store = new Vuex.Store({
+            actions,
+            getters
+        });
+
+        const wrapper = mount(Main, { store, localVue });
+        const loader = wrapper.findComponent(Loader);
+        expect(loader.is(Loader)).toBe(true);
     });
 });
