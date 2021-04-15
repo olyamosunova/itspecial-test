@@ -51,8 +51,8 @@ const data = [
 ];
 
 describe('unit tests for Table component', () => {
-    let actions;
-    let getters;
+    let actions: any;
+    let getters: any;
     let store: any;
 
     beforeEach(() => {
@@ -76,5 +76,46 @@ describe('unit tests for Table component', () => {
     it('should match the snapshot', () => {
        const wrapper = mount(Table, { store, localVue });
        expect(wrapper.html()).toMatchSnapshot();
+    });
+
+    it('should right calculate computed properties', () => {
+        getters = {
+            data: () => data,
+            perPage: () => 20,
+            currentPage: () => 1
+        };
+
+        store = new Vuex.Store({
+            actions,
+            getters
+        });
+
+        const wrapper = mount(Table, { store, localVue });
+        const vm = wrapper.vm as any;
+
+        expect(vm.pagesCount).toBe(1);
+        expect(vm.pages).toHaveLength(1);
+    });
+
+    it('should to be call dispatch changeCurrentPage when user click pagination', () => {
+        const wrapper = mount(Table, { store, localVue });
+        const vm = wrapper.vm as any;
+
+        const parameters = {
+            type: '',
+            page: 1
+        };
+
+       vm.onClickChangePage(parameters);
+       expect(actions.changeCurrentPage).toBeCalled();
+    });
+
+    it('click on table row to choose a user', () => {
+        const wrapper = mount(Table, { store, localVue });
+        const vm = wrapper.vm as any;
+        const spy = spyOn(vm, 'onClickChooseUser');
+
+        wrapper.find('tbody tr').trigger('click');
+        expect(spy).toBeCalled();
     });
 });

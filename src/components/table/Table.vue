@@ -85,6 +85,10 @@
 
                 let count = length / this.perPage;
 
+                if (count > 0 && count < 1) {
+                    return 1;
+                }
+
                 if (length % this.perPage) {
                     count += 1;
                 }
