@@ -1,55 +1,54 @@
 <template>
-    <nav class="d-flex justify-content-end">
-        <ul class="pagination">
-            <li class="page-item">
-                <button class="page-link" type="button" aria-label="First"
-                        @click="handlerClickChangePage('first', null)"
-                        :disabled="currentPage === 1">
-                    <span aria-hidden="true">&laquo;</span>
-                </button>
-            </li>
-            <li class="page-item">
-                <button class="page-link" type="button" aria-label="Previous"
-                        @click="handlerClickChangePage('prev', null)"
-                        :disabled="currentPage === 1">
-                    <span aria-hidden="true">&lsaquo;</span>
-                </button>
-            </li>
-            <li class="page-item disabled" v-if="showLeftEllipsis">
-                <span class="page-link">...</span>
-            </li>
-            <li :class="{
-                'page-item': true,
-                'active': currentPage === page
+    <ul class="pagination">
+        <li class="pagination__item">
+            <button class="pagination__link" type="button" aria-label="First"
+                    @click="handlerClickChangePage('first', null)"
+                    :disabled="currentPage === 1">
+                <span aria-hidden="true">&laquo;</span>
+            </button>
+        </li>
+        <li class="pagination__item">
+            <button class="pagination__link" type="button" aria-label="Previous"
+                    @click="handlerClickChangePage('prev', null)"
+                    :disabled="currentPage === 1">
+                <span aria-hidden="true">&lsaquo;</span>
+            </button>
+        </li>
+        <li class="pagination__item pagination__item--disabled" v-if="showLeftEllipsis">
+            <span class="pagination__link">...</span>
+        </li>
+        <li :class="{
+                'pagination__item': true,
+                'pagination__item--active': currentPage === page
                 }"
-                v-for="page in pages.slice(pageCountStart, pageCountEnd)" :key="page">
-                <button class="page-link" type="button"
-                        @click="handlerClickChangePage('', page)">
-                    {{page}}</button>
-            </li>
-            <li class="page-item disabled" v-if="showRightEllipsis">
-                <span class="page-link">...</span>
-            </li>
-            <li class="page-item">
-                <button class="page-link" type="button" aria-label="Next"
-                        @click="handlerClickChangePage('next', null)"
-                        :disabled="currentPage === pages.length">
-                    <span aria-hidden="true">&rsaquo;</span>
-                </button>
-            </li>
-            <li class="page-item">
-                <button class="page-link" type="button" aria-label="Last"
-                        @click="handlerClickChangePage('last', null)"
-                        :disabled="currentPage === pages.length">
-                    <span aria-hidden="true">&raquo;</span>
-                </button>
-            </li>
-        </ul>
-    </nav>
+            v-for="page in pages.slice(pageCountStart, pageCountEnd)" :key="page">
+            <button class="pagination__link" type="button"
+                    @click="handlerClickChangePage('', page)">
+                {{page}}</button>
+        </li>
+        <li class="pagination__item pagination__item--disabled" v-if="showRightEllipsis">
+            <span class="pagination__link">...</span>
+        </li>
+        <li class="pagination__item">
+            <button class="pagination__link" type="button" aria-label="Next"
+                    @click="handlerClickChangePage('next', null)"
+                    :disabled="currentPage === pages.length">
+                <span aria-hidden="true">&rsaquo;</span>
+            </button>
+        </li>
+        <li class="pagination__item">
+            <button class="pagination__link" type="button" aria-label="Last"
+                    @click="handlerClickChangePage('last', null)"
+                    :disabled="currentPage === pages.length">
+                <span aria-hidden="true">&raquo;</span>
+            </button>
+        </li>
+    </ul>
 </template>
 
 <script lang="ts">
     import Vue, { PropType } from 'vue';
+    import './Pagination.scss';
 
     export default Vue.extend({
         name: "Pagination",

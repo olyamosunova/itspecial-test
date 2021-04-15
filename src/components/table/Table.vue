@@ -1,17 +1,17 @@
 <template>
     <div>
-        <div class="overflow-auto mt-5 mb-5">
-            <table class="table table-hover">
-                <thead class="thead-light">
+        <div class="overflow-auto">
+            <table class="table">
+                <thead>
                 <tr>
                     <FieldTitle v-for="field in fields" :key="field.key" :field="field" />
                 </tr>
                 </thead>
                 <tbody>
                 <tr
-                    v-for="item in data.slice(perPage * (currentPage - 1), perPage * currentPage)"
-                    :key="item.id + item.firstName"
-                    @click="onClickChooseUser(item.id)"
+                        v-for="item in data.slice(perPage * (currentPage - 1), perPage * currentPage)"
+                        :key="item.id + item.firstName"
+                        @click="onClickChooseUser(item.id)"
                 >
                     <td>{{item.id}}</td>
                     <td>{{item.firstName}}</td>
@@ -19,12 +19,13 @@
                     <td>{{item.phone}}</td>
                     <td>{{item.email}}</td>
                 </tr>
-                <tr>
-                    <td v-if="!data.length" colspan="6">No results were found for your search.</td>
+                <tr v-if="!data.length">
+                    <td colspan="5">No results were found for your search.</td>
                 </tr>
                 </tbody>
             </table>
         </div>
+
         <Pagination
                 v-if="pages.length > 1"
                 :pages="pages"
@@ -34,6 +35,7 @@
 
 <script lang="ts">
     import Vue from 'vue';
+    import './Table.scss';
     import FieldTitle from '@/components/field-title/Field-title.vue';
     import Pagination from '@/components/pagination/Pagination.vue';
 

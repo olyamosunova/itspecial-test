@@ -1,14 +1,15 @@
 <template>
-    <form @submit="onSubmit">
-        <div class="input-group mb-3">
-            <input v-model="form.title" type="text" class="form-control" placeholder="Enter text" aria-label="Enter text" required>
-            <button class="btn btn-primary" type="submit" :disabled="!data">Find</button>
+    <form class="form" @submit="onSubmit">
+        <div class="form__block">
+            <input v-model="form.title" type="text" class="form__control" placeholder="Enter text" aria-label="Enter text" required>
+            <button class="button" type="submit" :disabled="!data">Find</button>
         </div>
     </form>
 </template>
 
 <script lang="ts">
     import Vue from 'vue';
+    import './Form.scss';
 
     export default Vue.extend({
         name: "Form-filter",

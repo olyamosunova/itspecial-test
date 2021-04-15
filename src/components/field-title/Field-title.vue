@@ -1,8 +1,7 @@
 <template>
     <th
         @click="handlerClickSortData(field.key)"
-        :class="{sort: field.sortable}"
-        scope="col">
+        :class="{sort: field.sortable}">
         {{ field.label }}
         <span
             v-if="field.sortable"

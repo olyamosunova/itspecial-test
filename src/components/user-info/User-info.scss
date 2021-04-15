@@ -1,0 +1,47 @@
+@import "./src/styles/_variables.scss";
+@import "./src/styles/_mixins.scss";
+
+.card {
+  display: block;
+  margin: 40px 0 0;
+  padding: 20px;
+  border: 1px solid #dee2e6;
+
+  @include mediaMax($mobile-max-width) {
+    margin: 20px 0;
+    padding: 15px;
+  }
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card__text {
+  margin: 5px 0;
+}
+
+.card__textarea {
+  display: flex;
+  width: 100%;
+  max-width: 70%;
+  height: 100%;
+  max-height: 550px;
+  margin: 5px 0;
+  padding: 0.375rem 0.75rem;
+
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $text-color;
+
+  background-color: $textarea-background;
+  border: 1px solid $border-color;
+
+  resize: none;
+
+  @include mediaMax($mobile-max-width) {
+    max-width: 100%;
+  }
+}
