@@ -1,0 +1,35 @@
+$background-overlay: rgba(0, 0, 0, 0.2);
+$background-message: #ffffff;
+$shadow-color: rgba(220, 20, 60, 0.4);
+
+.error {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 15px;
+
+  background-color: $background-overlay;
+}
+
+.error__container {
+  max-width: 540px;
+  padding: 20px;
+
+  background-color: $background-message;
+
+  border-radius: 3px;
+  box-shadow: 0 0 3px 1px $shadow-color;
+}
+
+.error__text {
+  margin: 0;
+}

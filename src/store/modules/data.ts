@@ -9,7 +9,8 @@ export default {
       filteredData: null,
       sortedData: null,
       chosenUser: null,
-      activeSortBy: null
+      activeSortBy: null,
+      error: null
   },
   mutations: {
       setData(state: any, data: Array<object>) {
@@ -27,17 +28,21 @@ export default {
       setActiveSortBy(state: any, value: string) {
           state.activeSortBy = value;
       },
+      setError(state: any, message: string) {
+          state.error = message;
+      }
   },
   actions: {
     getData({commit}: any) {
       axios(url)
           .then(res => {
-              console.log(res.data);
               commit('setData', res.data);
               commit('setSortedData', res.data);
+              commit('setError', null);
           })
           .catch(err => {
-              console.error(err)
+              console.error(err);
+              commit('setError', 'Не удалось загрузить данные. Попробуйте перезагрузить страницу.');
           });
     },
       filterData({state, commit}: any, value: string) {
@@ -54,7 +59,6 @@ export default {
                 email.includes(value.toLowerCase()) ||
                 phone.includes(value.toLowerCase());
         });
-
 
         commit('setFilteredData', newData);
       },
@@ -108,6 +112,9 @@ export default {
       },
       activeSortBy(state: any) {
          return state.activeSortBy;
+      },
+      error(state: any) {
+          return state.error;
       }
   }
 }
