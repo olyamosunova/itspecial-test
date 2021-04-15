@@ -2,56 +2,56 @@
 
 exports[`unit tests for Main component should match the snapshot 1`] = `
 <section class="container">
-  <form>
-    <div class="input-group mb-3"><input type="text" placeholder="Enter text" aria-label="Enter text" required="required" class="form-control"> <button type="submit" class="btn btn-primary">Find</button></div>
+  <form class="form">
+    <div class="form__block"><input type="text" placeholder="Enter text" aria-label="Enter text" required="required" class="form__control"> <button type="submit" class="button">Find</button></div>
   </form>
+  <!---->
   <div>
-    <div class="overflow-auto mt-5 mb-5">
-      <table class="table table-hover">
-        <thead class="thead-light">
+    <div class="overflow-auto">
+      <table class="table">
+        <thead>
           <tr>
-            <th scope="col" class="sort">
+            <th class="sort">
               ID
               <span class="sort-icon"></span>
             </th>
-            <th scope="col" class="sort">
+            <th class="sort">
               First Name
               <span class="sort-icon"></span>
             </th>
-            <th scope="col" class="sort">
+            <th class="sort">
               Last Name
               <span class="sort-icon"></span>
             </th>
-            <th scope="col" class="">
+            <th class="">
               Phone
               <!---->
             </th>
-            <th scope="col" class="">
+            <th class="">
               Email
               <!---->
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <!---->
-          </tr>
+          <!---->
         </tbody>
       </table>
     </div>
     <!---->
   </div>
-  <div class="card mt-5">
-    <div class="card-body">
-      <p class="card-text">Selected user: <b>Meribeth Haglund</b></p>
-      <p class="card-text">Description:
-        <textarea disabled="disabled" class="form-control"></textarea>
+  <div class="card">
+    <div class="card__body">
+      <p class="card__text">Selected user: <b>Meribeth Haglund</b></p>
+      <p class="card__text"> Description:
+        <textarea disabled="disabled" class="card__textarea" style="height: 2px;"></textarea>
       </p>
-      <p class="card-text">Residence address: <b>9749 Ante Ct</b></p>
-      <p class="card-text">City: <b>El Dorado Hills</b></p>
-      <p class="card-text">Province / State: <b>NV</b></p>
-      <p class="card-text">Zip: <b>71328</b></p>
+      <p class="card__text">Residence address: <b>9749 Ante Ct</b></p>
+      <p class="card__text">City: <b>El Dorado Hills</b></p>
+      <p class="card__text">Province / State: <b>NV</b></p>
+      <p class="card__text">Zip: <b>71328</b></p>
     </div>
   </div>
+  <!---->
 </section>
 `;

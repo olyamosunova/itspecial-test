@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`unit tests for FieldTitle component should match the snapshot 1`] = `
-<th scope="col" class="">
+<th class="">
   name
   <!---->
 </th>
