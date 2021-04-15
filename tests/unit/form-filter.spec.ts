@@ -1,4 +1,4 @@
-import { createLocalVue, mount } from '@vue/test-utils'
+import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import Vuex from 'vuex';
 import FormFilter from "@/components/form-filter/Form-filter.vue";
 
@@ -51,8 +51,8 @@ const data = [
 ];
 
 describe('unit tests for FormFilter component', () => {
-    let actions;
-    let getters;
+    let actions: any;
+    let getters: any;
     let store: any;
 
     beforeEach(() => {
@@ -75,5 +75,24 @@ describe('unit tests for FormFilter component', () => {
     it('should match the snapshot', () => {
         const wrapper = mount(FormFilter, { store, localVue });
         expect(wrapper.html()).toMatchSnapshot();
+    });
+
+    it('when title is empty call method clearInput', async () => {
+        const wrapper = shallowMount(FormFilter, { store, localVue, data: () => ({ form: { title: 'search text' } }) });
+        await wrapper.setData({ form: { title: '' } });
+        expect(actions.clearFilterInput).toBeCalled();
+    });
+
+    it('should submit form', async () => {
+        const wrapper = mount(FormFilter, { store, localVue });
+
+        await wrapper.find("input").setValue("search text");
+        await wrapper.find("form").trigger("submit.prevent");
+
+        const vm = wrapper.vm as any;
+
+        expect(vm.form.title).toBe('search text');
+        expect(actions.changeCurrentPage).toBeCalled();
+        expect(actions.filterData).toBeCalled();
     });
 });
