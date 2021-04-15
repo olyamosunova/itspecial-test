@@ -13,7 +13,7 @@
     export default Vue.extend({
         name: "Error",
         props: {
-            error: Array
+            error: String
         }
     });
 </script>

@@ -3,7 +3,7 @@
         <FormFilter />
 
         <Loader v-if="!data && !error" />
-        <Table v-else />
+        <Table v-if="data" />
 
         <UserInfo v-if="chosenUser" />
 
