@@ -13,8 +13,8 @@ const field = {
 };
 
 describe('unit tests for FieldTitle component', () => {
-    let actions;
-    let getters;
+    let actions: any;
+    let getters: any;
     let store: any;
 
     beforeEach(() => {
@@ -48,6 +48,7 @@ describe('unit tests for FieldTitle component', () => {
 
         expect((wrapper.vm as any).activeSortType).toBe('');
         wrapper.find('th').trigger('click');
+        expect(actions.sortingData).toBeCalled();
         expect((wrapper.vm as any).activeSortType).toBe('inc');
     });
 
@@ -62,6 +63,7 @@ describe('unit tests for FieldTitle component', () => {
 
         expect((wrapper.vm as any).activeSortType).toBe('');
         wrapper.find('th').trigger('click');
+        expect(actions.sortingData).toHaveBeenCalledTimes(0);
         expect((wrapper.vm as any).activeSortType).toBe('');
     });
 });
