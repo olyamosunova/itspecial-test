@@ -41,8 +41,16 @@ export default {
               commit('setError', null);
           })
           .catch(err => {
-              console.error(err);
-              commit('setError', 'Не удалось загрузить данные. Попробуйте перезагрузить страницу.');
+              axios('/data.json')
+                  .then(result => {
+                      commit('setData', result.data);
+                      commit('setSortedData', result.data);
+                      commit('setError', null);
+                  })
+                  .catch(() => {
+                      console.error(err);
+                      commit('setError', 'Не удалось загрузить данные. Попробуйте перезагрузить страницу.');
+                  });
           });
     },
       filterData({state, commit}: any, value: string) {
